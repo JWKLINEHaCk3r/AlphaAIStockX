@@ -1,0 +1,30 @@
+ai-trading-project/
+├── backend/
+│   ├── alembic/
+│   │   ├── versions/
+│   │   │   └── xxxx_initial_migration.py
+│   │   ├── env.py
+│   │   └── alembic.ini
+│   ├── ml/
+│   │   └── credit_score.py
+│   ├── models.py
+│   ├── database.py
+│   ├── routes/
+│   │   └── credit_line.py
+│   ├── schemas.py
+│   ├── requirements.txt
+│   └── main.py
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── CreditUsageChart.tsx
+│   │   │   └── CreditScoreOverlay.tsx
+│   │   └── App.tsx
+│   ├── package.json
+│   └── tsconfig.json
+├── Dockerfile
+├── docker-compose.yml
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+└── README.md
