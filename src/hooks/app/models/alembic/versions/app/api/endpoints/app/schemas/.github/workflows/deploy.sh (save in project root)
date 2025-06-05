@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+# ==== Step 1: Set your GitHub repo ====
+REPO_URL="git@github.com:JWKLINEHaCk3r/AlphaAIStockX.git"
+BRANCH="main"
+
+# ==== Step 2: Build Docker containers ====
+echo "🔧 Building Docker containers..."
+docker-compose down
+docker-compose build
+docker-compose up -d
+
+# ==== Step 3: Run Alembic Migrations ====
+echo "🔄 Applying Alembic migrations..."
+docker-compose exec web alembic upgrade head
+
+# ==== Step 4: Commit and push to GitHub ====
+echo "📤 Committing changes to GitHub..."
+
+git add .
+git commit -m "🚀 Finalized deployment: credit scoring, analytics, Docker, CI/CD"
+git branch -M $BRANCH
+git remote remove origin || true
+git remote add origin $REPO_URL
+git push -u origin $BRANCH
+
+echo "✅ Project pushed to GitHub and deployed locally."
