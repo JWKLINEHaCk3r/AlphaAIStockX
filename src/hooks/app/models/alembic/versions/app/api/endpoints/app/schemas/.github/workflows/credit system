@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+# ==== CONFIGURATION ====
+REPO_URL="git@github.com:JWKLINEHaCk3r/AlphaAIStockX.git"
+BRANCH="main"
+PROJECT_DIR="AlphaAIStockX"
+
+# ==== SETUP ====
+echo "🚀 Cloning project repository..."
+rm -rf $PROJECT_DIR
+git clone $REPO_URL $PROJECT_DIR
+cd $PROJECT_DIR
+git checkout $BRANCH
+
+# ==== BUILD DOCKER ====
+echo "🔧 Building Docker containers..."
+docker-compose down
+docker-compose build
+docker-compose up -d
+
+# ==== RUN ALEMBIC MIGRATIONS ====
+echo "🔄 Running Alembic migrations..."
+docker-compose exec web alembic upgrade head
+
+# ==== COMMIT AND PUSH ====
+echo "📤 Committing changes..."
+git add .
+git commit -m "🎯 Full deployment: Credit AI, Docker, CI/CD, scoring"
+git push origin $BRANCH
+
+echo "✅ Deployment complete and pushed to GitHub."
