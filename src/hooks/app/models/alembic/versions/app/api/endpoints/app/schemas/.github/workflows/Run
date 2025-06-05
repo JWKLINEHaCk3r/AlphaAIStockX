@@ -1,0 +1,5 @@
+docker-compose up --build
+Run locally with:
+
+
+Open browser at http://localhost:8000
